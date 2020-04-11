@@ -58,17 +58,17 @@ for m=1:12     %boucle Annees
     %--------------------------------------------------------%
     
 end
-%----------Puissance pour carte annuel----------------------%
-yPw=sum(Pwm,2);
-ymPw=reshape(yPw,length(lat),length(long));
-%--------------------------------------------------------%
-
-    
+%%    
 %------------------Histogramme-hauteur-------------------%    
-figure(14)
-h=histogram(mH4,50,'Normalization','probability');
-tit=sprintf('Distribution hauteur des vagues sur toute la zone');
+figure(13)
+subplot(2,1,1)
+h=histogram(mH4,20,'Normalization','probability');
+tit=sprintf('Distribution Annuelle de la hauteur des vagues sur toute la zone');
 title(tit);
+xlabel('Hauteurs en metre')
+%ylabel('Fréquence')
+%yylabel('Fréquence en %')
+
 hold on
 % comptage sur 100 casiers
 [N,edges]  = histcounts(mH4,100);
@@ -77,17 +77,24 @@ edges = (edges(1:end-1)+edges(2:end))/2;
 % N en cumulé et pourcentage
 N = cumsum(N)/sum(N)*100;
 % affichage
-plotyy(0,0,edges,N)
+[hAx,~,~]=plotyy(0,0,edges,N);
+ylabel(hAx(1),'Fréquence ') % left y-axis 
+ylabel(hAx(2),'Fréquence cumulé en %') % right y-axis
+set(hAx,{'ycolor'},{'k';'r'})
+xlim([1 , 3.5]);
 [N, index] = unique(N); 
 yi1 = interp1(N, edges(index), 50);
 hold off
 %--------------------------------------------------------%
 
 %------------------Histogramme-Periode-------------------%
-figure(15)
-h=histogram(mTp4,50,'Normalization','probability');
-tit=sprintf('Distribution de la période sur toute la zone');
+subplot(2,1,2)
+h=histogram(mTp4,20,'Normalization','probability');
+tit=sprintf('Distribution annuelle de la période sur toute la zone');
 title(tit);
+xlabel('Periode en s')
+%ylabel('Fréquence')
+xlim([8, 15]);
 hold on
 % comptage sur 100 casiers
 [N,edges]  = histcounts(mTp4,100);
@@ -97,15 +104,21 @@ edges = (edges(1:end-1)+edges(2:end))/2;
 % N en cumulé et pourcentage
 N = cumsum(N)/sum(N)*100;
 % affichage
-plotyy(0,0,edges,N)
+[hAx,~,~]=plotyy(0,0,edges,N);
+ylabel(hAx(1),'Fréquence ') % left y-axis 
+ylabel(hAx(2),'Fréquence cumulé en %') % right y-axis
+set(hAx,{'ycolor'},{'k';'r'})
 [N, index] = unique(N); 
 yi3 = interp1(N, edges(index), 50);
 hold off
+s=sprintf('Histo_HTp_MA.png');
+saveas(gcf,s);
 %--------------------------------------------------------%
 
-%%
+%----calcul de la puissance moyenne annuel---------------%
+%------en fonction de 50% de distribution----------------%
 Pf=yi1^2.*yi3;
-Pwf=0.4.*P;
-    
+Pwf=0.4.*Pf;
+%--------------------------------------------------------%    
     
     
