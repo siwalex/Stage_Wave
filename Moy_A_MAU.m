@@ -15,16 +15,16 @@ for m=1:12     %boucle mois
 
         %-----Extraire longitude latitute ---------------%
         long=ncread(filename,'longitude');    %réccupération de la matrice des longitudes
-        long=long(14:27);
+        long=long(38:50);
         lat=ncread(filename,'latitude'); 
-        lat=lat(6:19);
+        lat=lat(16:28);
         %--------------------------------------------------------%
 
         %-----Extraire les données du fichier .nc ---------------%
         H0=ncread(filename,'VHM0');     %Hauteur
-        H0=H0(14:27,6:19,:);
+        H0=H0(38:50,16:28,:);
         Tp0=ncread(filename,'VTPK');      %Peak period
-        Tp0=Tp0(14:27,6:19,:);
+        Tp0=Tp0(38:50,16:28,:);
         H1=[];
         Tp1=[];
         for i=1:length(t)
@@ -59,20 +59,20 @@ for m=1:12     %boucle mois
     mPw=reshape(Pw,length(lat),length(long));
     %--------------------------------------------------------%
     
-%     %------Carte-moyenne-mensuelle--------------------------------%
-%     figure(m)
-%     mymap=pcolor(long,lat,mPw);      %creer une map 
-%     mymap.EdgeAlpha=0;              %taille du maillage
-%     colormap(jet)                   %legend
-%     colorbar;             
-%     %caxis([0;60])    
-%     xlabel('Longitude')
-%     ylabel('Latitude')
-%     tit=sprintf('Puissance moyenne mensuelle pour le %.2d (kW/m)',m);
-%     title(tit);
-%         s=sprintf('PMA_%d.png',y);
-%         saveas(gcf,s);
-%     %--------------------------------------------------------%
+    %------Carte-moyenne-mensuelle--------------------------------%
+    figure(m)
+    mymap=pcolor(long,lat,mPw);      %creer une map 
+    mymap.EdgeAlpha=0;              %taille du maillage
+    colormap(jet)                   %legend
+    colorbar;             
+    caxis([0;60])    
+    xlabel('Longitude')
+    ylabel('Latitude')
+    tit=sprintf('Puissance moyenne mensuelle pour le mois %.2d (kW/m), Maurice',m);
+    title(tit);
+        s=sprintf('PMM_MAU_%.2d.png',m);
+        saveas(gcf,s);
+    %--------------------------------------------------------%
 end
 
 %------Matrice de la moyenne annuelle--------------------------------%
@@ -89,9 +89,9 @@ colorbar;
 %caxis([40;400])    
 xlabel('Longitude')
 ylabel('Latitude')
-tit=sprintf('Puissance moyenne annuelle sur 3 ans (Kw/m)');
+tit=sprintf('Puissance moyenne annuelle (Kw/m), Maurice');
 title(tit);
-    s=sprintf('PMA_%d_Mau.png',y);
+    s=sprintf('PMA_MAU.png');
     saveas(gcf,s);
 %--------------------------------------------------------%
 

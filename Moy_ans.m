@@ -42,10 +42,10 @@ for m=1:12     %boucle mois
         mTp2=[mTp2 mTp1];
     end
     mH3=mean(mH2,2);             %mean du mois 1 pour y annes
-    mH4=[mH4 mH3];               %matrice moyennes des différents mois
+    %mH4=[mH4 mH3];               %matrice moyennes des différents mois
     
     mTp3=mean(mTp2,2);
-    mTp4=[mTp4 mTp3];
+    %mTp4=[mTp4 mTp3];
     
     %-------------calcul puissance moyenne------------------%
     P=mH3.^2.*mTp3;     
@@ -61,14 +61,35 @@ for m=1:12     %boucle mois
     mymap.EdgeAlpha=0;              %taille du maillage
     colormap(jet)                   %legend
     colorbar;             
-    %caxis([0;60])    
+    caxis([0;60])    
     xlabel('Longitude')
     ylabel('Latitude')
-    tit=sprintf('Puissance moyenne mensuelle pour le %.2d (kW/m)',m);
+    tit=sprintf('Puissance moyenne mensuelle pour le mois %.2d (kW/m)',m);
     title(tit);
-        s=sprintf('PMA_%d.png',y);
-        saveas(gcf,s);
+    s=sprintf('PMM_%.2d.png',m);
+    saveas(gcf,s);
     %--------------------------------------------------------%
+    
+    
+
+%     %------Carte-variance-mensuelle--------------------------------%
+%     vH3=var(mH2,0,2);
+%     vTp3=var(mTp2,0,2);
+%     Pvar=0.4.*vH3.^2.*vTp3;
+%     varH=reshape(vH3,length(lat),length(long));
+%     figure
+%     mymap=pcolor(long,lat,varH);      %creer une map 
+%     mymap.EdgeAlpha=0;              %taille du maillage
+%     colormap(jet)                   %legend
+%     colorbar;             
+%     caxis([0;1])    
+%     xlabel('Longitude')
+%     ylabel('Latitude')
+%     tit=sprintf('Variance de la puissance mensuelle pour le mois %.2d (kW/m)',m);
+%     title(tit);
+%     s=sprintf('varPMM_%.2d.png',m);
+%     saveas(gcf,s);
+%     %--------------------------------------------------------%
 end
 
 %------Matrice de la moyenne annuelle--------------------------------%
@@ -85,9 +106,9 @@ colorbar;
 %caxis([40;400])    
 xlabel('Longitude')
 ylabel('Latitude')
-tit=sprintf('Puissance moyenne annuelle sur 3 ans');
+tit=sprintf('Puissance moyenne annuelle en kW/m');
 title(tit);
-    s=sprintf('PMA_%d.png',y);
+    s=sprintf('PMA.png');
     saveas(gcf,s);
 %--------------------------------------------------------%
 

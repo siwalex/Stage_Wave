@@ -15,16 +15,16 @@ for m=1:12     %boucle mois
 
         %-----Extraire longitude latitute ---------------%
         long=ncread(filename,'longitude');    %réccupération de la matrice des longitudes
-        long=long(38:50);
+        long=long(14:27);
         lat=ncread(filename,'latitude'); 
-        lat=lat(16:28);
+        lat=lat(6:19);
         %--------------------------------------------------------%
 
         %-----Extraire les données du fichier .nc ---------------%
         H0=ncread(filename,'VHM0');     %Hauteur
-        H0=H0(38:50,16:28,:);
+        H0=H0(14:27,6:19,:);
         Tp0=ncread(filename,'VTPK');      %Peak period
-        Tp0=Tp0(38:50,16:28,:);
+        Tp0=Tp0(14:27,6:19,:);
         H1=[];
         Tp1=[];
         for i=1:length(t)
@@ -46,10 +46,10 @@ for m=1:12     %boucle mois
         mTp2=[mTp2 mTp1];
     end
     mH3=mean(mH2,2);             %mean du mois 1 pour y annes
-    mH4=[mH4 mH3];               %matrice moyennes des différents mois
+    %mH4=[mH4 mH3];               %matrice moyennes des différents mois
     
     mTp3=mean(mTp2,2);
-    mTp4=[mTp4 mTp3];
+    %mTp4=[mTp4 mTp3];
     
     %-------------calcul puissance moyenne------------------%
     P=mH3.^2.*mTp3;     
@@ -59,22 +59,22 @@ for m=1:12     %boucle mois
     mPw=reshape(Pw,length(lat),length(long));
     %--------------------------------------------------------%
     
-%     %------Carte-moyenne-mensuelle--------------------------------%
-%     figure(m)
-%     mymap=pcolor(long,lat,mPw);      %creer une map 
-%     mymap.EdgeAlpha=0;              %taille du maillage
-%     colormap(jet)                   %legend
-%     colorbar;             
-%     %caxis([0;60])    
-%     xlabel('Longitude')
-%     ylabel('Latitude')
-%     tit=sprintf('Puissance moyenne mensuelle pour le %.2d (kW/m)',m);
-%     title(tit);
-%         s=sprintf('PMA_%d.png',y);
-%         saveas(gcf,s);
-%     %--------------------------------------------------------%
+    %------Carte-moyenne-mensuelle--------------------------------%
+    figure(m)
+    mymap=pcolor(long,lat,mPw);      %creer une map 
+    mymap.EdgeAlpha=0;              %taille du maillage
+    colormap(jet)                   %legend
+    colorbar;             
+    caxis([0;50])    
+    xlabel('Longitude')
+    ylabel('Latitude')
+    tit=sprintf('Puissance moyenne mensuelle pour le %.2d (kW/m), a Réunion',m);
+    title(tit);
+        s=sprintf('PMM_RUN_%2d.png',m);
+        saveas(gcf,s);
+    %--------------------------------------------------------%
 end
-
+%%
 %------Matrice de la moyenne annuelle--------------------------------%
 yPw=sum(Pwm,2);     %somme des puissances des moyenne mensuelles  
 ymPw=reshape(yPw,length(lat),length(long));     %redimensionne
@@ -89,9 +89,9 @@ colorbar;
 %caxis([40;400])    
 xlabel('Longitude')
 ylabel('Latitude')
-tit=sprintf('Puissance moyenne annuelle sur 3 ans (Kw/m)');
+tit=sprintf('Puissance moyenne annuelle (Kw/m), La Reunion');
 title(tit);
-    s=sprintf('PMA_%d_Run.png',y);
+    s=sprintf('PMA_RUN.png');
     saveas(gcf,s);
 %--------------------------------------------------------%
 
