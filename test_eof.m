@@ -36,7 +36,7 @@ n=6;
 
 %--------------Moyenne------------------%
 figure (1)
-imagesc(long,lat,mean(sst,3));
+imagescn(long,lat,mean(sst,3));
 axis xy off
 cb = colorbar;
 ylabel(cb,' hauteur moyenne (m) ')
@@ -58,13 +58,13 @@ anomaly(t,pc(1,:))
 % caxis([0 1])
 %---------------------------------------%
 
-% Plot the first mode:
-figure(4)
-imagesc(long,lat,eof_maps(:,:,1))
-colorbar
-axis xy image
-cmocean('curl')
-title 'The first EOF mode!'
+% -----------Plot the first mode-------%:
+% figure(4)
+% imagescn(long,lat,eof_maps(:,:,1))
+% colorbar
+% axis xy image
+% cmocean('curl')
+% title 'The first EOF mode!'
 %---------------------------------------%
 
 s = [-1 1 -1 1 -1 1]; % (sign multiplier to match Messie and Chavez 2011)
@@ -72,12 +72,27 @@ s = [-1 1 -1 1 -1 1]; % (sign multiplier to match Messie and Chavez 2011)
 figure('pos',[100 100 500 700])
 for k = 1:6
    subplot(3,2,k)
-   imagesc(long,lat,eof_maps(:,:,k)*s(k));
+   imagescn(long,lat,eof_maps(:,:,k)*s(k));
    axis xy off
    title(['Mode ',num2str(k),' (',num2str(expv(k),'%0.1f'),'%)'])
    colorbar
    cmocean curl
 end
 %colormap jet
+
+%%
+%--------------psd------------------%
+figure
+y1=H(:);
+y=H(1:8)';
+Fs=1/length(y);
+plotpsd(y,Fs)
+set(gca,'xscale','log','yscale','log')
+axis tight
+xlabel 'frequency (Hz)'
+ylabel 'puissance de densité spectrale (dB)'
+%---------------------------------------%
+
+
 
 
