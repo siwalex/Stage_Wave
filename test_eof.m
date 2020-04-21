@@ -1,6 +1,5 @@
 clear,clc
 
-
 H=[];
 dim=3;
 t=[];
@@ -25,27 +24,54 @@ for y=2017:2019
         
         C = cat(dim,C,H0);
         t2=[t2 ;t1];
+        
     end
-    H=cat(dim,H,C);
+    H=cat(dim,H,C); %matice de toutes les données, tout les temps, toutes les coordonnées
     t=[t ;t2];
 end
 
-sst=H;
-n=6;
-[eof_maps,pc,expv] = eof(sst,n);
-
-%--------------Moyenne------------------%
-figure (1)
-imagescn(long,lat,mean(sst,3));
-axis xy off
-cb = colorbar;
-ylabel(cb,' hauteur moyenne (m) ')
-cmocean ('rain')
+%-------données centrées réduites-------%
+for i=1:73
+    for j=1:37
+    CS(i,j,:)=zscore(H(i,j,:)); %moyenne/ecart-type
+    end
+end
 %---------------------------------------%
+
+sst=CS;
+n=6; %nombre de composantes principales à afficher
+[eof_maps,pc,expv] = eof(sst,n);
+%eof_maps = cartes des composantes principales
+%pc = composantes principales en temps
+%expv = pourcentage de variance
 
 %--------------Anomalie-----------------%
 figure(2)
 anomaly(t,pc(1,:))
+%---------------------------------------%
+
+% Plot the first mode: %
+figure(4)
+imagescn(long,lat,eof_maps(:,:,1))
+colorbar
+axis xy image
+cmocean('curl')
+title 'The first EOF mode!'
+%---------------------------------------%
+
+%--Trace les cartes des composantes principales--%
+s = [-1 1 -1 1 -1 1];
+
+figure('pos',[100 100 500 700])
+for k = 1:6
+   subplot(3,2,k)
+   imagescn(long,lat,eof_maps(:,:,k)*s(k));
+   axis xy off
+   title(['Mode ',num2str(k),' (',num2str(expv(k),'%0.1f'),'%)'])
+   colorbar
+   caxis([-0.06;0.06]) 
+   cmocean curl
+end
 %---------------------------------------%
 
 %--------------Variance-----------------%
@@ -58,41 +84,11 @@ anomaly(t,pc(1,:))
 % caxis([0 1])
 %---------------------------------------%
 
-% -----------Plot the first mode-------%:
-% figure(4)
-% imagescn(long,lat,eof_maps(:,:,1))
-% colorbar
-% axis xy image
-% cmocean('curl')
-% title 'The first EOF mode!'
+%--------------Moyenne------------------%
+% figure (1)
+% imagescn(long,lat,mean(H,3));
+% axis xy off
+% cb = colorbar;
+% ylabel(cb,' hauteur moyenne (m) ')
+% cmocean ('rain')
 %---------------------------------------%
-
-s = [-1 1 -1 1 -1 1]; % (sign multiplier to match Messie and Chavez 2011)
-
-figure('pos',[100 100 500 700])
-for k = 1:6
-   subplot(3,2,k)
-   imagescn(long,lat,eof_maps(:,:,k)*s(k));
-   axis xy off
-   title(['Mode ',num2str(k),' (',num2str(expv(k),'%0.1f'),'%)'])
-   colorbar
-   cmocean curl
-end
-%colormap jet
-
-%%
-%--------------psd------------------%
-figure
-y1=H(:);
-y=H(1:8)';
-Fs=1/length(y);
-plotpsd(y,Fs)
-set(gca,'xscale','log','yscale','log')
-axis tight
-xlabel 'frequency (Hz)'
-ylabel 'puissance de densité spectrale (dB)'
-%---------------------------------------%
-
-
-
-
