@@ -75,16 +75,23 @@ title(tit);
 %--Trace les cartes des composantes principales--%
 s = [-1 1 -1 1 -1 1];
 
-figure%('pos',[100 100 500 700])
+figure('pos',[100 100 1080 780])
+    tit=sprintf('Carte des 6 premiers modes');
+    title(tit);
 for k = 1:6
    subplot(3,2,k)
    imagescn(long,lat,eof_maps(:,:,k)*s(k));
-   axis xy off
+   axis xy on
    title(['Mode ',num2str(k),' (',num2str(expv(k),'%0.1f'),'%)'])
    colorbar
    caxis([-0.06;0.06]) 
    cmocean curl
+   xlabel('Longitude')
+   ylabel('Latitude')
 end
+
+s=sprintf('6_modes.png');
+saveas(gcf,s);
 %---------------------------------------%
 
 %--------------Variance-----------------%
