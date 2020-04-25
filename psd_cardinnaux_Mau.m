@@ -51,7 +51,7 @@ freq = 0:Fs/length(data):Fs/2;
 plot(1./freq,psdx,'-ok')     
 xlabel('Période (en heure)')
 ylabel('Amplitude de la fréquence')
-tit=sprintf('Puissance de densité spectrale au Ouest de Maurice');
+tit=sprintf('Puissance de densité spectrale au Nord de Maurice');
 title(tit);
 s=sprintf('PSD_Nord_MAU.png');
 saveas(gcf,s);
@@ -75,7 +75,7 @@ freq = 0:Fs/length(data):Fs/2;
 plot(1./freq,psdx,'-ok')  
 xlabel('Période (en heure)')
 ylabel('Amplitude de la fréquence')
-tit=sprintf('Puissance de densité spectrale au Ouest de Maurice');
+tit=sprintf('Puissance de densité spectrale au Sud de Maurice');
 title(tit);
 s=sprintf('PSD_Sud_MAU.png');
 saveas(gcf,s);
@@ -119,7 +119,7 @@ freq = 0:Fs/length(data):Fs/2;
 plot(1./freq,psdx,'-ok')  
 xlabel('Période (en heure)')
 ylabel('Amplitude de la fréquence')
-tit=sprintf('Puissance de densité spectrale au Ouest de Maurice');
+tit=sprintf('Puissance de densité spectrale au Est de Maurice');
 title(tit);
 s=sprintf('PSD_Est_MAU.png');
 saveas(gcf,s);
