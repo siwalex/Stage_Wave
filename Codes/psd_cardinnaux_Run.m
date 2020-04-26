@@ -58,7 +58,8 @@ xdft = xdft(1:N/2+1);
 psdx = (1/(Fs*N)) * abs(xdft).^2;
 psdx(2:end-1) = 2*psdx(2:end-1);
 freq = 0:Fs/length(data):Fs/2;
-plot(1./freq,psdx,'-ok')     
+x=3*(1./freq);
+plot(x,psdx,'-ok')    
 xlabel('Période (en heure)')
 ylabel('Amplitude de la fréquence')
 tit=sprintf('Puissance de densité spectrale au Nord de La Réunion');
@@ -82,7 +83,8 @@ xdft = xdft(1:N/2+1);
 psdx = (1/(Fs*N)) * abs(xdft).^2;
 psdx(2:end-1) = 2*psdx(2:end-1);
 freq = 0:Fs/length(data):Fs/2;
-plot(1./freq,psdx,'-ok')  
+x=3*(1./freq);
+plot(x,psdx,'-ok') 
 xlabel('Période (en heure)')
 ylabel('Amplitude de la fréquence')
 tit=sprintf('Puissance de densité spectrale au Sud de La Réunion');
@@ -104,7 +106,8 @@ xdft = xdft(1:N/2+1);
 psdx = (1/(Fs*N)) * abs(xdft).^2;
 psdx(2:end-1) = 2*psdx(2:end-1);
 freq = 0:Fs/length(data):Fs/2;
-plot(1./freq,psdx,'-ok')  
+x=3*(1./freq);
+plot(x,psdx,'-ok') 
 xlabel('Période (en heure)')
 ylabel('Amplitude de la fréquence')
 tit=sprintf('Puissance de densité spectrale au Ouest de La Réunion');
@@ -126,7 +129,8 @@ xdft = xdft(1:N/2+1);
 psdx = (1/(Fs*N)) * abs(xdft).^2;
 psdx(2:end-1) = 2*psdx(2:end-1);
 freq = 0:Fs/length(data):Fs/2;
-plot(1./freq,psdx,'-ok')  
+x=3*(1./freq);
+plot(x,psdx,'-ok')
 xlabel('Période (en heure)')
 ylabel('Amplitude de la fréquence')
 tit=sprintf('Puissance de densité spectrale au Est de La Réunion');
