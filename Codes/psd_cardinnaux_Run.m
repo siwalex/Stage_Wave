@@ -16,12 +16,17 @@ for y=2017:2019
 
         %-----Extraire longitude latitute ---------------%
         long=ncread(filename,'longitude');    %réccupération de la matrice des longitudes
+        long=long(14:27);
         lat=ncread(filename,'latitude'); 
+        lat=lat(6:19);
         %--------------------------------------------------------%
 
         %-----Extraire les données du fichier .nc ---------------%
         H0=ncread(filename,'VHM0');     %Hauteur
+        H0=H0(14:27,6:19,:);
         Tp0=ncread(filename,'VTPK');      %Peak period
+        Tp0=Tp0(14:27,6:19,:);
+        %--------------------------------------------------------%
         
         C = cat(dim,C,H0);
         t2=[t2 ;t1];
@@ -30,8 +35,18 @@ for y=2017:2019
     t=[t ;t2];
 end
 
+% %figure
+% %pcolor(long,lat,H2(:,:,1));
+% V=H2(:,:,1);
+% 
+% H=permute(H2,[2 1 3]);
+% 
+% %figure
+% %pcolor(long,lat,H(:,:,1));
+% U=H(:,:,1);
+
 %--------------psd-H nord run----------%
-Hnr=H(12,16,:);  %extraire une coordonnée au nord
+Hnr=H(7,12,:);  %extraire une coordonnée au nord
 figure
 y=Hnr(:);
 %Fs=1/length(y);  %frequence
@@ -50,12 +65,12 @@ tit=sprintf('Puissance de densité spectrale au Nord de La Réunion');
 title(tit);
 s=sprintf('PSD_Nord_RUN.png');
 saveas(gcf,s);
-%%---------------------------------------%
+%---------------------------------------%
 
 
 
 %--------------psd-H sud run------------%
-Hnr=H(12,24,:);
+Hnr=H(7,2,:);
 figure
 y=Hnr(:);
 Fs=1/length(y);
@@ -77,7 +92,7 @@ saveas(gcf,s);
 %---------------------------------------%
 
 %--------------psd-H Ouest run------------%
-Hnr=H(8,21,:);
+Hnr=H(2,7,:);
 figure
 y=Hnr(:);
 Fs=1/length(y);
@@ -99,7 +114,7 @@ saveas(gcf,s);
 %---------------------------------------%
 
 %--------------psd-H Est run------------%
-Hnr=H(16,21,:);
+Hnr=H(12,7,:);
 figure
 y=Hnr(:);
 Fs=1/length(y);

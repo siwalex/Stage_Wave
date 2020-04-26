@@ -35,8 +35,9 @@ for y=2017:2019
     t=[t ;t2];
 end
 %%
+U=H(:,:,1);
 %--------------psd-H nord run----------%
-Hnr=H(7,3,:);  %extraire une coordonnée au nord
+Hnr=H(6,11,:);  %extraire une coordonnée au nord
 figure
 y=Hnr(:);
 %Fs=1/length(y);  %frequence
@@ -60,7 +61,7 @@ saveas(gcf,s);
 
 %%
 %--------------psd-H sud run------------%
-Hnr=H(7,10,:);
+Hnr=H(6,2,:);
 figure
 y=Hnr(:);
 Fs=1/length(y);
@@ -82,7 +83,7 @@ saveas(gcf,s);
 %---------------------------------------%
 %%
 %--------------psd-H Ouest run------------%
-Hnr=H(3,7,:);
+Hnr=H(2,6,:);
 figure
 y=Hnr(:);
 Fs=1/length(y);
@@ -104,7 +105,7 @@ saveas(gcf,s);
 %---------------------------------------%
 %%
 %--------------psd-H Est run------------%
-Hnr=H(10,7,:);
+Hnr=H(11,6,:);
 figure
 y=Hnr(:);
 Fs=1/length(y);
