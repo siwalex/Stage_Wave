@@ -75,13 +75,13 @@ for i=1:2
    mTp5=mTp4(:,i);
    mTp1_2=[mTp1_2 mTp5];
 end
-
+%%
 mH12_2=[mH12 mH1_2]; %matrice décembre + janvier février
 mTp12_2=[mTp12 mTp1_2];
 %------------------Histogramme-hauteur-------------------%    
 figure(1)
 subplot(2,1,1)
-h=histogram(mH12_2,50,'Normalization','probability');
+h=histogram(mH12_2,25,'Normalization','probability');
 tit=sprintf('Distribution de la hauteur des vagues dans la zone A, de décembre à février');
 title(tit);
 xlabel('Hauteurs en metre')
@@ -99,14 +99,14 @@ ylabel(hAx(1),'Fréquence ') % left y-axis
 ylabel(hAx(2),'Fréquence cumulé en %') % right y-axis
 set(hAx,{'ycolor'},{'k';'r'})
 [N, index] = unique(N); 
-yi1 = interp1(N, edges(index), 50);
+yi112_2 = interp1(N, edges(index), 50);
 hold off
 
 %--------------------------------------------------------%
 
 %------------------Histogramme-Periode-------------------%
 subplot(2,1,2)
-h=histogram(mTp12_2,50,'Normalization','probability');
+h=histogram(mTp12_2,25,'Normalization','probability');
 tit=sprintf('Distribution de la période dans la zone A, de décembre à février');
 title(tit);
 xlabel('Periode en s')
@@ -125,7 +125,7 @@ ylabel(hAx(1),'Fréquence ') % left y-axis
 ylabel(hAx(2),'Fréquence cumulé en %') % right y-axis
 set(hAx,{'ycolor'},{'k';'r'})
 [N, index] = unique(N); 
-yi3 = interp1(N, edges(index), 50);
+yi312_2 = interp1(N, edges(index), 50);
 hold off
  s=sprintf('Histo_HTp_DJF.png');
  saveas(gcf,s);
@@ -133,7 +133,7 @@ hold off
 
 %----calcul de la puissance moyenne annuel---------------%
 %------en fonction de 50% de distribution----------------%
-Pf12_2=yi1^2.*yi3;
+Pf12_2=yi112_2^2.*yi312_2;
 Pwf12_2=0.4.*Pf12_2;
 %--------------------------------------------------------%
 
@@ -152,7 +152,7 @@ end
 %------------------Histogramme-hauteur-------------------%    
 figure(2)
 subplot(2,1,1)
-h=histogram(mH3_5,50,'Normalization','probability');
+h=histogram(mH3_5,25,'Normalization','probability');
 tit=sprintf('Distribution de la hauteur des vagues dans la zone A, de mars à mai');
 title(tit);
 xlabel('Hauteurs en metre')
@@ -170,14 +170,14 @@ ylabel(hAx(1),'Fréquence ') % left y-axis
 ylabel(hAx(2),'Fréquence cumulé en %') % right y-axis
 set(hAx,{'ycolor'},{'k';'r'})
 [N, index] = unique(N); 
-yi1 = interp1(N, edges(index), 50);
+yi13_5 = interp1(N, edges(index), 50);
 hold off
 
 %--------------------------------------------------------%
 
 %------------------Histogramme-Periode-------------------%
 subplot(2,1,2)
-h=histogram(mTp3_5,50,'Normalization','probability');
+h=histogram(mTp3_5,25,'Normalization','probability');
 tit=sprintf('Distribution de la période dans la zone A, de mars à mai');
 title(tit);
 xlabel('Periode en s')
@@ -196,7 +196,7 @@ ylabel(hAx(1),'Fréquence ') % left y-axis
 ylabel(hAx(2),'Fréquence cumulé en %') % right y-axis
 set(hAx,{'ycolor'},{'k';'r'})
 [N, index] = unique(N); 
-yi3 = interp1(N, edges(index), 50);
+yi33_5 = interp1(N, edges(index), 50);
 hold off
 s=sprintf('Histo_HTp_MAM.png');
 saveas(gcf,s);
@@ -204,7 +204,7 @@ saveas(gcf,s);
 
 %----calcul de la puissance moyenne annuel---------------%
 %------en fonction de 50% de distribution----------------%
-Pf3_5=yi1^2.*yi3;
+Pf3_5=yi13_5^2.*yi33_5;
 Pwf3_5=0.4.*Pf3_5;
 %--------------------------------------------------------%
 
@@ -224,7 +224,7 @@ end
 %------------------Histogramme-hauteur-------------------%    
 figure(3)
 subplot(2,1,1)
-h=histogram(mH6_8,50,'Normalization','probability');
+h=histogram(mH6_8,25,'Normalization','probability');
 tit=sprintf('Distribution de la hauteur des vagues dans la zone A, de juin à août');
 title(tit);
 xlabel('Hauteurs en metre')
@@ -242,14 +242,14 @@ ylabel(hAx(1),'Fréquence ') % left y-axis
 ylabel(hAx(2),'Fréquence cumulé en %') % right y-axis
 set(hAx,{'ycolor'},{'k';'r'})
 [N, index] = unique(N); 
-yi1 = interp1(N, edges(index), 50);
+yi16_8 = interp1(N, edges(index), 50);
 hold off
 
 %--------------------------------------------------------%
 
 %------------------Histogramme-Periode-------------------%
 subplot(2,1,2)
-h=histogram(mTp6_8,50,'Normalization','probability');
+h=histogram(mTp6_8,25,'Normalization','probability');
 tit=sprintf('Distribution de la période dans la zone A, de juin à août');
 title(tit);
 xlabel('Periode en s')
@@ -265,17 +265,19 @@ N = cumsum(N)/sum(N)*100;
 % affichage
 [hAx,~,~]=plotyy(0,0,edges,N);
 ylabel(hAx(1),'Fréquence ') % left y-axis 
+yticks(hAx(1),[0 0.125 0.25])
 ylabel(hAx(2),'Fréquence cumulé en %') % right y-axis
+yticks(hAx(2),[0 50 100])
 set(hAx,{'ycolor'},{'k';'r'})
 [N, index] = unique(N); 
-yi3 = interp1(N, edges(index), 50);
+yi36_8 = interp1(N, edges(index), 50);
 hold off
 s=sprintf('Histo_HTp_JJA.png');
 saveas(gcf,s);
 %--------------------------------------------------------%
 
 %------en fonction de 50% de distribution----------------%
-Pf6_8=yi1^2.*yi3;
+Pf6_8=yi16_8^2.*yi36_8;
 Pwf6_8=0.4.*Pf6_8;
 %--------------------------------------------------------%
 
@@ -293,7 +295,7 @@ end
 %------------------Histogramme-hauteur-------------------%    
 figure(4)
 subplot(2,1,1)
-h=histogram(mH9_11,50,'Normalization','probability');
+h=histogram(mH9_11,25,'Normalization','probability');
 tit=sprintf('Distribution de la hauteur des vagues dans la zone A, de septembre à novembre');
 title(tit);
 xlabel('Hauteurs en metre')
@@ -311,14 +313,14 @@ ylabel(hAx(1),'Fréquence ') % left y-axis
 ylabel(hAx(2),'Fréquence cumulé en %') % right y-axis
 set(hAx,{'ycolor'},{'k';'r'})
 [N, index] = unique(N); 
-yi1 = interp1(N, edges(index), 50);
+yi19_11 = interp1(N, edges(index), 50);
 hold off
 
 %--------------------------------------------------------%
 
 %------------------Histogramme-Periode-------------------%
 subplot(2,1,2)
-h=histogram(mTp9_11,50,'Normalization','probability');
+h=histogram(mTp9_11,25,'Normalization','probability');
 tit=sprintf('Distribution de la période dans la zone A, de septembre à novembre');
 title(tit);
 xlabel('Periode en s')
@@ -337,13 +339,13 @@ ylabel(hAx(1),'Fréquence ') % left y-axis
 ylabel(hAx(2),'Fréquence cumulé en %') % right y-axis
 set(hAx,{'ycolor'},{'k';'r'})
 [N, index] = unique(N); 
-yi3 = interp1(N, edges(index), 50);
+yi39_11 = interp1(N, edges(index), 50);
 hold off
 s=sprintf('Histo_HTp_SON.png');
 saveas(gcf,s);
 %--------------------------------------------------------%
 
 %------en fonction de 50% de distribution----------------%
-Pf9_11=yi1^2.*yi3;
+Pf9_11=yi19_11^2.*yi39_11;
 Pwf9_11=0.4.*Pf9_11;
 %--------------------------------------------------------%

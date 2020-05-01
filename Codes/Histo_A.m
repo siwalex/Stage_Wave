@@ -62,13 +62,11 @@ end
 %------------------Histogramme-hauteur-------------------%    
 figure(13)
 subplot(2,1,1)
-h=histogram(mH4,20,'Normalization','probability');
+h=histogram(mH4,25,'Normalization','probability');
 tit=sprintf('Distribution Annuelle de la hauteur des vagues sur toute la zone');
 title(tit);
 xlabel('Hauteurs en metre')
-%ylabel('Fréquence')
-%yylabel('Fréquence en %')
-
+xlim([0.5 , 3.5]);
 hold on
 % comptage sur 100 casiers
 [N,edges]  = histcounts(mH4,100);
@@ -81,7 +79,6 @@ N = cumsum(N)/sum(N)*100;
 ylabel(hAx(1),'Fréquence ') % left y-axis 
 ylabel(hAx(2),'Fréquence cumulé en %') % right y-axis
 set(hAx,{'ycolor'},{'k';'r'})
-xlim([1 , 3.5]);
 [N, index] = unique(N); 
 yi1 = interp1(N, edges(index), 50);
 hold off
@@ -89,12 +86,11 @@ hold off
 
 %------------------Histogramme-Periode-------------------%
 subplot(2,1,2)
-h=histogram(mTp4,20,'Normalization','probability');
+h=histogram(mTp4,25,'Normalization','probability');
 tit=sprintf('Distribution annuelle de la période sur toute la zone');
 title(tit);
 xlabel('Periode en s')
-%ylabel('Fréquence')
-xlim([8, 15]);
+xlim([7.5, 15]);
 hold on
 % comptage sur 100 casiers
 [N,edges]  = histcounts(mTp4,100);
