@@ -82,7 +82,7 @@ mTp12_2=[mTp12 mTp1_2];
 figure(1)
 subplot(2,1,1)
 h=histogram(mH12_2,25,'Normalization','probability');
-tit=sprintf('Distribution de la hauteur des vagues dans la zone A, de décembre à février');
+tit=sprintf('Distribution de la hauteur des vagues \n dans la zone A, de décembre à février');
 title(tit);
 xlabel('Hauteurs en metre')
 xlim([1 2.4]);
@@ -97,7 +97,7 @@ N = cumsum(N)/sum(N)*100;
 [hAx,~,~]=plotyy(0,0,edges,N);
 ylabel(hAx(1),'Fréquence ') % left y-axis 
 ylabel(hAx(2),'Fréquence cumulé en %') % right y-axis
-set(hAx,{'ycolor'},{'k';'r'})
+set(hAx,{'ycolor'},{'k';'r'},'FontSize', 15)
 [N, index] = unique(N); 
 yi112_2 = interp1(N, edges(index), 50);
 hold off
@@ -107,7 +107,7 @@ hold off
 %------------------Histogramme-Periode-------------------%
 subplot(2,1,2)
 h=histogram(mTp12_2,25,'Normalization','probability');
-tit=sprintf('Distribution de la période dans la zone A, de décembre à février');
+tit=sprintf('Distribution de la période \n dans la zone A, de décembre à février');
 title(tit);
 xlabel('Periode en s')
 xlim([8.2 13.2]);
@@ -123,7 +123,7 @@ N = cumsum(N)/sum(N)*100;
 [hAx,~,~]=plotyy(0,0,edges,N);
 ylabel(hAx(1),'Fréquence ') % left y-axis 
 ylabel(hAx(2),'Fréquence cumulé en %') % right y-axis
-set(hAx,{'ycolor'},{'k';'r'})
+set(hAx,{'ycolor'},{'k';'r'},'FontSize', 15)
 [N, index] = unique(N); 
 yi312_2 = interp1(N, edges(index), 50);
 hold off
@@ -153,7 +153,7 @@ end
 figure(2)
 subplot(2,1,1)
 h=histogram(mH3_5,25,'Normalization','probability');
-tit=sprintf('Distribution de la hauteur des vagues dans la zone A, de mars à mai');
+tit=sprintf('Distribution de la hauteur des vagues \n dans la zone A, de mars à mai');
 title(tit);
 xlabel('Hauteurs en metre')
 xlim([1 2.8]);
@@ -168,7 +168,7 @@ N = cumsum(N)/sum(N)*100;
 [hAx,~,~]=plotyy(0,0,edges,N);
 ylabel(hAx(1),'Fréquence ') % left y-axis 
 ylabel(hAx(2),'Fréquence cumulé en %') % right y-axis
-set(hAx,{'ycolor'},{'k';'r'})
+set(hAx,{'ycolor'},{'k';'r'},'FontSize', 15)
 [N, index] = unique(N); 
 yi13_5 = interp1(N, edges(index), 50);
 hold off
@@ -178,7 +178,7 @@ hold off
 %------------------Histogramme-Periode-------------------%
 subplot(2,1,2)
 h=histogram(mTp3_5,25,'Normalization','probability');
-tit=sprintf('Distribution de la période dans la zone A, de mars à mai');
+tit=sprintf('Distribution de la période  \n dans la zone A, de mars à mai');
 title(tit);
 xlabel('Periode en s')
 xlim([10 11]);
@@ -194,7 +194,7 @@ N = cumsum(N)/sum(N)*100;
 [hAx,~,~]=plotyy(0,0,edges,N);
 ylabel(hAx(1),'Fréquence ') % left y-axis 
 ylabel(hAx(2),'Fréquence cumulé en %') % right y-axis
-set(hAx,{'ycolor'},{'k';'r'})
+set(hAx,{'ycolor'},{'k';'r'},'FontSize', 15)
 [N, index] = unique(N); 
 yi33_5 = interp1(N, edges(index), 50);
 hold off
@@ -225,7 +225,7 @@ end
 figure(3)
 subplot(2,1,1)
 h=histogram(mH6_8,25,'Normalization','probability');
-tit=sprintf('Distribution de la hauteur des vagues dans la zone A, de juin à août');
+tit=sprintf('Distribution de la hauteur des vagues \n dans la zone A, de juin à août');
 title(tit);
 xlabel('Hauteurs en metre')
 xlim([1 3.5]);
@@ -240,7 +240,7 @@ N = cumsum(N)/sum(N)*100;
 [hAx,~,~]=plotyy(0,0,edges,N);
 ylabel(hAx(1),'Fréquence ') % left y-axis 
 ylabel(hAx(2),'Fréquence cumulé en %') % right y-axis
-set(hAx,{'ycolor'},{'k';'r'})
+set(hAx,{'ycolor'},{'k';'r'},'FontSize', 15)
 [N, index] = unique(N); 
 yi16_8 = interp1(N, edges(index), 50);
 hold off
@@ -250,7 +250,7 @@ hold off
 %------------------Histogramme-Periode-------------------%
 subplot(2,1,2)
 h=histogram(mTp6_8,25,'Normalization','probability');
-tit=sprintf('Distribution de la période dans la zone A, de juin à août');
+tit=sprintf('Distribution de la période \n dans la zone A, de juin à août');
 title(tit);
 xlabel('Periode en s')
 xlim([8 15]);
@@ -268,7 +268,7 @@ ylabel(hAx(1),'Fréquence ') % left y-axis
 yticks(hAx(1),[0 0.125 0.25])
 ylabel(hAx(2),'Fréquence cumulé en %') % right y-axis
 yticks(hAx(2),[0 50 100])
-set(hAx,{'ycolor'},{'k';'r'})
+set(hAx,{'ycolor'},{'k';'r'},'FontSize', 15)
 [N, index] = unique(N); 
 yi36_8 = interp1(N, edges(index), 50);
 hold off
@@ -296,7 +296,7 @@ end
 figure(4)
 subplot(2,1,1)
 h=histogram(mH9_11,25,'Normalization','probability');
-tit=sprintf('Distribution de la hauteur des vagues dans la zone A, de septembre à novembre');
+tit=sprintf('Distribution de la hauteur des vagues \n dans la zone A, de septembre à novembre');
 title(tit);
 xlabel('Hauteurs en metre')
 xlim([1 2.8]);
@@ -311,7 +311,7 @@ N = cumsum(N)/sum(N)*100;
 [hAx,~,~]=plotyy(0,0,edges,N);
 ylabel(hAx(1),'Fréquence ') % left y-axis 
 ylabel(hAx(2),'Fréquence cumulé en %') % right y-axis
-set(hAx,{'ycolor'},{'k';'r'})
+set(hAx,{'ycolor'},{'k';'r'},'FontSize', 15)
 [N, index] = unique(N); 
 yi19_11 = interp1(N, edges(index), 50);
 hold off
@@ -321,7 +321,7 @@ hold off
 %------------------Histogramme-Periode-------------------%
 subplot(2,1,2)
 h=histogram(mTp9_11,25,'Normalization','probability');
-tit=sprintf('Distribution de la période dans la zone A, de septembre à novembre');
+tit=sprintf('Distribution de la période \n dans la zone A, de septembre à novembre');
 title(tit);
 xlabel('Periode en s')
 xlim([10 11]);
@@ -337,7 +337,7 @@ N = cumsum(N)/sum(N)*100;
 [hAx,~,~]=plotyy(0,0,edges,N);
 ylabel(hAx(1),'Fréquence ') % left y-axis 
 ylabel(hAx(2),'Fréquence cumulé en %') % right y-axis
-set(hAx,{'ycolor'},{'k';'r'})
+set(hAx,{'ycolor'},{'k';'r'},'FontSize', 15)
 [N, index] = unique(N); 
 yi39_11 = interp1(N, edges(index), 50);
 hold off

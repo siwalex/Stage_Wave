@@ -53,53 +53,13 @@ for m=1:12     %boucle Annees
     mH4=[mH4 mH3];
     mTp4=[mTp4 mTp3];
     
-%     %------------------Histogramme-hauteur-------------------%    
-%     figure(m)
-%     subplot(2,1,1)
-%     h=histogram(mH4,50,'Normalization','probability');
-%     tit=sprintf('Distribution mensuelle du %.2d hauteur des vagues pour Maurice',m);
-%     title(tit);
-%     hold on
-%     % comptage sur 100 casiers
-%     [N,edges]  = histcounts(mH4,100);
-%     % valeur moyenne des casiers
-%     edges = (edges(1:end-1)+edges(2:end))/2;
-%     % N en cumulé et pourcentage
-%     N = cumsum(N)/sum(N)*100;
-%     % affichage
-%     plotyy(0,0,edges,N)
-%     [N, index] = unique(N); 
-%     yi1 = interp1(N, edges(index), 50);
-%     hold off
-%     %--------------------------------------------------------%
-% 
-%     %------------------Histogramme-Periode-------------------%
-%     subplot(2,1,2)
-%     h=histogram(mTp4,50,'Normalization','probability');
-%     tit=sprintf('Distribution mensuelle du %.2d de la période pour Maurice',m);
-%     title(tit);
-%     hold on
-%     % comptage sur 100 casiers
-%     [N,edges]  = histcounts(mTp4,100);
-%     N(N==0)=1;
-%     % valeur moyenne des casiers
-%     edges = (edges(1:end-1)+edges(2:end))/2;
-%     % N en cumulé et pourcentage
-%     N = cumsum(N)/sum(N)*100;
-%     % affichage
-%     plotyy(0,0,edges,N)
-%     [N, index] = unique(N); 
-%     yi3 = interp1(N, edges(index), 50);
-%     hold off
-%     %--------------------------------------------------------%
-    
 end
     
 %------------------Histogramme-hauteur-------------------%    
 figure(15)
 subplot(2,1,1)
 h=histogram(mH4,25,'Normalization','probability');
-tit=sprintf('Distribution annuelle de la hauteur des vagues pour Maurice');
+tit=sprintf('Distribution annuelle de la \n hauteur des vagues en zone C');
 title(tit);
 xlim([1, 3.5]);
 xlabel('Hauteurs en metre')
@@ -116,7 +76,7 @@ ylabel(hAx(1),'Fréquence ') % left y-axis
 yticks(hAx(1),[0 0.05 0.1])
 ylabel(hAx(2),'Fréquence cumulé en %') % right y-axis
 yticks(hAx(2),[0 50 100])
-set(hAx,{'ycolor'},{'k';'r'})
+set(hAx,{'ycolor'},{'k';'r'},'FontSize', 15)
 [N, index] = unique(N); 
 yi1 = interp1(N, edges(index), 50);
 hold off
@@ -126,7 +86,7 @@ hold off
 %------------------Histogramme-Periode-------------------%
 subplot(2,1,2)
 h=histogram(mTp4,25,'Normalization','probability');
-tit=sprintf('Distribution annuelle de la période pour Maurice');
+tit=sprintf('Distribution annuelle de la période en zone C');
 title(tit);
 title(tit);
 xlim([8, 15]);
@@ -145,7 +105,7 @@ ylabel(hAx(1),'Fréquence ') % left y-axis
 yticks(hAx(1),[0 0.05 0.1])
 ylabel(hAx(2),'Fréquence cumulé en %') % right y-axis
 yticks(hAx(2),[0 50 100])
-set(hAx,{'ycolor'},{'k';'r'}) 
+set(hAx,{'ycolor'},{'k';'r'},'FontSize', 15) 
 [N, index] = unique(N); 
 yi3 = interp1(N, edges(index), 50);
 hold off
