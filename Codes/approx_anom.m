@@ -61,7 +61,7 @@ anomaly(xData,pc(1,:))
 
 hold on
 xdata=xData';
-f=fit(xdata,pc(1,:)','smoothingspline','SmoothingParam',0.000001);
+f=fit(xdata,pc(1,:)','smoothingspline','SmoothingParam',0.0000001);
 plot(f,'-or')
 
 grid on
