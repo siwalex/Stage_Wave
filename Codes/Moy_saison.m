@@ -67,7 +67,7 @@ for i=1:2
    sPw1=Pwm(:,i);
    sPw11=[sPw11 sPw1];
 end
-
+%%
 sPw101=[sPw10 sPw11]; %matrice décembre + janvier février
 %------Matrice de la moyenne annuelle--------------------------------%
 yPw1=mean(sPw101,2);     %somme des puissances des moyenne mensuelles  
@@ -79,13 +79,16 @@ mymap=pcolor(long,lat,ymPw1);      %creer une map
 mymap.EdgeAlpha=0;              %taille du maillage
 colormap(jet)                   %legend
 colorbar;             
-caxis([0;45])    
+caxis([0;45]) 
+ geoshow('MUS_adm0.shp','FaceColor',[.8 .8 .8])
+ geoshow('run_adm0.shp','FaceColor',[.8 .8 .8])
 xlabel('Longitude')
 ylabel('Latitude')
-tit=sprintf('Puissance moyenne de decembre à février (kW/m)');
+tit=sprintf('Puissance moyenne de \ndecembre à février (kW/m)');
 title(tit);
-%    s=sprintf('PMSais_SON_%d.png',y);
-%    saveas(gcf,s);
+set(gca,'FontSize', 15)
+   s=sprintf('PMSais_FDJ.png');
+   saveas(gcf,s);
 %--------------------------------------------------------%
 
 sPw22=[];
@@ -104,13 +107,16 @@ mymap=pcolor(long,lat,ymPw2);      %creer une map
 mymap.EdgeAlpha=0;              %taille du maillage
 colormap(jet)                   %legend
 colorbar;             
-caxis([0;45])    
+caxis([0;45]) 
+ geoshow('MUS_adm0.shp','FaceColor',[.8 .8 .8])
+ geoshow('run_adm0.shp','FaceColor',[.8 .8 .8])
 xlabel('Longitude')
 ylabel('Latitude')
-tit=sprintf('Puissance moyenne de mars à mai (kW/m)');
+tit=sprintf('Puissance moyenne de \n mars à mai (kW/m)');
 title(tit);
-%    s=sprintf('PMSais_SON_%d.png',y);
-%    saveas(gcf,s);
+set(gca,'FontSize', 15)
+   s=sprintf('PMSais_MAM.png');
+   saveas(gcf,s);
 %--------------------------------------------------------%
 
 sPw33=[];
@@ -129,13 +135,16 @@ mymap=pcolor(long,lat,ymPw3);      %creer une map
 mymap.EdgeAlpha=0;              %taille du maillage
 colormap(jet)                   %legend
 colorbar;             
-caxis([0;45])    
+caxis([0;45])  
+ geoshow('MUS_adm0.shp','FaceColor',[.8 .8 .8])
+ geoshow('run_adm0.shp','FaceColor',[.8 .8 .8])
 xlabel('Longitude')
 ylabel('Latitude')
-tit=sprintf('Puissance moyenne de juin à aout (kW/m)');
+tit=sprintf('Puissance moyenne de \n juin à aout (kW/m)');
 title(tit);
-%    s=sprintf('PMSais_SON_%d.png',y);
-%    saveas(gcf,s);
+set(gca,'FontSize', 15)
+   s=sprintf('PMSais_JJA.png');
+   saveas(gcf,s);
 %--------------------------------------------------------%
 
 sPw44=[];
@@ -152,14 +161,17 @@ figure(16)
 mymap=pcolor(long,lat,ymPw4);      %creer une map 
 mymap.EdgeAlpha=0;              %taille du maillage
 colormap(jet)                   %legend
-colorbar;             
-caxis([0;45])    
+colorbar; 
+caxis([0;45]) 
+ geoshow('MUS_adm0.shp','FaceColor',[.8 .8 .8])
+ geoshow('run_adm0.shp','FaceColor',[.8 .8 .8])
 xlabel('Longitude')
 ylabel('Latitude')
-tit=sprintf('Puissance moyenne de Septembre à Novembre (kW/m)');
+tit=sprintf('Puissance moyenne de \n Septembre à Novembre (kW/m)');
 title(tit);
-%    s=sprintf('PMSais_SON_%d.png',y);
-%    saveas(gcf,s);
+set(gca,'FontSize', 15)
+   s=sprintf('PMSais_SON.png');
+   saveas(gcf,s);
 %--------------------------------------------------------%
 
 

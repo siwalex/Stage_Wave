@@ -73,7 +73,7 @@ for i=1:2
    sPw1=Pwm(:,i);
    sPw11=[sPw11 sPw1];
 end
-
+%%
 sPw101=[sPw10 sPw11]; %matrice décembre + janvier février
 %------Matrice de la moyenne annuelle--------------------------------%
 yPw1=mean(sPw101,2);     %somme des puissances des moyenne mensuelles  
@@ -85,11 +85,13 @@ mymap=pcolor(long,lat,ymPw1);      %creer une map
 mymap.EdgeAlpha=0;              %taille du maillage
 colormap(jet)                   %legend
 colorbar;             
-caxis([0;45])    
+caxis([0;45]) 
+geoshow('MUS_adm0.shp','FaceColor',[.8 .8 .8])
 xlabel('Longitude')
 ylabel('Latitude')
-tit=sprintf('Puissance moyenne de decembre à février (kW/m)pour Maurice');
+tit=sprintf('Puissance moyenne de decembre \n à février (kW/m), en zone C');
 title(tit);
+set(gca,'FontSize', 15)
 s=sprintf('PMSais_DJF_MAU.png');
 saveas(gcf,s);
 %--------------------------------------------------------%
@@ -110,11 +112,13 @@ mymap=pcolor(long,lat,ymPw2);      %creer une map
 mymap.EdgeAlpha=0;              %taille du maillage
 colormap(jet)                   %legend
 colorbar;             
-caxis([0;45])    
+caxis([0;45])  
+geoshow('MUS_adm0.shp','FaceColor',[.8 .8 .8])
 xlabel('Longitude')
 ylabel('Latitude')
-tit=sprintf('Puissance moyenne de mars à mai (kW/m)pour Maurice');
+tit=sprintf('Puissance moyenne de mars \n à mai (kW/m), en zone C');
 title(tit);
+set(gca,'FontSize', 15)
    s=sprintf('PMSais_MAM_MAU.png');
    saveas(gcf,s);
 %--------------------------------------------------------%
@@ -135,11 +139,13 @@ mymap=pcolor(long,lat,ymPw3);      %creer une map
 mymap.EdgeAlpha=0;              %taille du maillage
 colormap(jet)                   %legend
 colorbar;             
-caxis([0;45])    
+caxis([0;45]) 
+geoshow('MUS_adm0.shp','FaceColor',[.8 .8 .8])
 xlabel('Longitude')
 ylabel('Latitude')
-tit=sprintf('Puissance moyenne de juin à aout (kW/m)pour Maurice');
+tit=sprintf('Puissance moyenne de juin à \n aout (kW/m),zone C');
 title(tit);
+set(gca,'FontSize', 15)
    s=sprintf('PMSais_JJA_MAU.png');
    saveas(gcf,s);
 %--------------------------------------------------------%
@@ -159,11 +165,13 @@ mymap=pcolor(long,lat,ymPw4);      %creer une map
 mymap.EdgeAlpha=0;              %taille du maillage
 colormap(jet)                   %legend
 colorbar;             
-caxis([0;45])    
+caxis([0;45])
+geoshow('MUS_adm0.shp','FaceColor',[.8 .8 .8])
 xlabel('Longitude')
 ylabel('Latitude')
-tit=sprintf('Puissance moyenne de Septembre à Novembre (kW/m)pour Maurice');
+tit=sprintf('Puissance moyenne de Septembre à \n Novembre (kW/m), en zone C');
 title(tit);
+set(gca,'FontSize', 15)
    s=sprintf('PMSais_SON_MAU.png');
    saveas(gcf,s);
 %--------------------------------------------------------%

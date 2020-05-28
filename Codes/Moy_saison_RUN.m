@@ -88,12 +88,14 @@ colorbar;
 caxis([0;45])    
 xlabel('Longitude')
 ylabel('Latitude')
-tit=sprintf('Puissance moyenne de decembre à février (kW/m)pour La Réunion');
+tit=sprintf('Puissance moyenne de decembre à \n février (kW/m), en zone B');
 title(tit);
+set(gca,'FontSize', 15)
+geoshow('run_adm0.shp','FaceColor',[.8 .8 .8])
 s=sprintf('PMSais_DJF_RUN.png');
 saveas(gcf,s);
 %--------------------------------------------------------%
-
+%%
 sPw22=[];
 for i=3:5
    sPw2=Pwm(:,i);
@@ -113,8 +115,10 @@ colorbar;
 caxis([0;45])    
 xlabel('Longitude')
 ylabel('Latitude')
-tit=sprintf('Puissance moyenne de mars à mai (kW/m)pour La Réunion');
+tit=sprintf('Puissance moyenne de mars à \n mai (kW/m), en zone B');
 title(tit);
+set(gca,'FontSize', 15)
+geoshow('run_adm0.shp','FaceColor',[.8 .8 .8])
    s=sprintf('PMSais_MAM_RUN.png');
    saveas(gcf,s);
 %--------------------------------------------------------%
@@ -138,8 +142,10 @@ colorbar;
 caxis([0;45])    
 xlabel('Longitude')
 ylabel('Latitude')
-tit=sprintf('Puissance moyenne de juin à aout (kW/m)pour La Réunion');
+tit=sprintf('Puissance moyenne de juin à \n aout (kW/m), en zone B');
 title(tit);
+set(gca,'FontSize', 15)
+geoshow('run_adm0.shp','FaceColor',[.8 .8 .8])
    s=sprintf('PMSais_JJA_RUN.png');
    saveas(gcf,s);
 %--------------------------------------------------------%
@@ -162,8 +168,10 @@ colorbar;
 caxis([0;45])    
 xlabel('Longitude')
 ylabel('Latitude')
-tit=sprintf('Puissance moyenne de Septembre à Novembre (kW/m)pour La Réunion');
+tit=sprintf('Puissance moyenne de Septembre à \n Novembre (kW/m), en zone B');
 title(tit);
+set(gca,'FontSize', 15)
+geoshow('run_adm0.shp','FaceColor',[.8 .8 .8])
    s=sprintf('PMSais_SON_RUN.png');
    saveas(gcf,s);
 %--------------------------------------------------------%
