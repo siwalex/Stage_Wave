@@ -24,8 +24,6 @@ for y=2017:2019
         %-----Extraire les données du fichier .nc ---------------%
         H0=ncread(filename,'VHM0');     %Hauteur
         H0=H0(14:27,6:19,:);
-        Tp0=ncread(filename,'VTPK');      %Peak period
-        Tp0=Tp0(14:27,6:19,:);
         %--------------------------------------------------------%
         
         C = cat(dim,C,H0);
@@ -35,106 +33,94 @@ for y=2017:2019
     t=[t ;t2];
 end
 
-% %figure
-% %pcolor(long,lat,H2(:,:,1));
-% V=H2(:,:,1);
-% 
-% H=permute(H2,[2 1 3]);
-% 
-% %figure
-% %pcolor(long,lat,H(:,:,1));
-% U=H(:,:,1);
-
 %--------------psd-H nord run----------%
 Hnr=H(7,12,:);  %extraire une coordonnée au nord
-figure
 y=Hnr(:);
-%Fs=1/length(y);  %frequence
 data=y;
-N = length(data);
+
 Fs=1;
+freq = 0:Fs/length(data):Fs/2;
+x=3*(1./freq)./24;
+
+N = length(data);
 xdft = fft(data);
 xdft = xdft(1:N/2+1);
 psdx = (1/(Fs*N)) * abs(xdft).^2;
 psdx(2:end-1) = 2*psdx(2:end-1);
-freq = 0:Fs/length(data):Fs/2;
-x=3*(1./freq);
-plot(x,psdx,'-ok')    
-xlabel('Période (en heure)')
-ylabel('Amplitude de la fréquence')
-tit=sprintf('Puissance de densité spectrale au Nord de La Réunion');
-title(tit);
-s=sprintf('PSD_Nord_RUN.png');
-saveas(gcf,s);
+psdxn=psdx;
+
 %---------------------------------------%
-
-
 
 %--------------psd-H sud run------------%
 Hnr=H(7,2,:);
-figure
 y=Hnr(:);
-Fs=1/length(y);
 data=y;
 N = length(data);
-Fs=1;
 xdft = fft(data);
 xdft = xdft(1:N/2+1);
 psdx = (1/(Fs*N)) * abs(xdft).^2;
 psdx(2:end-1) = 2*psdx(2:end-1);
-freq = 0:Fs/length(data):Fs/2;
-x=3*(1./freq);
-plot(x,psdx,'-ok') 
-xlabel('Période (en heure)')
-ylabel('Amplitude de la fréquence')
-tit=sprintf('Puissance de densité spectrale au Sud de La Réunion');
-title(tit);
-s=sprintf('PSD_Sud_RUN.png');
-saveas(gcf,s);
-%---------------------------------------%
+psdxs=psdx;
+% %---------------------------------------%
 
-%--------------psd-H Ouest run------------%
+% %--------------psd-H Ouest run------------%
 Hnr=H(2,7,:);
-figure
 y=Hnr(:);
-Fs=1/length(y);
 data=y;
 N = length(data);
-Fs=1;
 xdft = fft(data);
 xdft = xdft(1:N/2+1);
 psdx = (1/(Fs*N)) * abs(xdft).^2;
 psdx(2:end-1) = 2*psdx(2:end-1);
-freq = 0:Fs/length(data):Fs/2;
-x=3*(1./freq);
-plot(x,psdx,'-ok') 
-xlabel('Période (en heure)')
-ylabel('Amplitude de la fréquence')
-tit=sprintf('Puissance de densité spectrale au Ouest de La Réunion');
-title(tit);
-s=sprintf('PSD_Ouest_RUN.png');
-saveas(gcf,s);
+psdxo=psdx;
 %---------------------------------------%
 
 %--------------psd-H Est run------------%
 Hnr=H(12,7,:);
-figure
 y=Hnr(:);
-Fs=1/length(y);
 data=y;
 N = length(data);
-Fs=1;
 xdft = fft(data);
 xdft = xdft(1:N/2+1);
 psdx = (1/(Fs*N)) * abs(xdft).^2;
 psdx(2:end-1) = 2*psdx(2:end-1);
-freq = 0:Fs/length(data):Fs/2;
-x=3*(1./freq);
-plot(x,psdx,'-ok')
-xlabel('Période (en heure)')
-ylabel('Amplitude de la fréquence')
-tit=sprintf('Puissance de densité spectrale au Est de La Réunion');
-title(tit);
-s=sprintf('PSD_Est_RUN.png');
-saveas(gcf,s);
+psdxe=psdx;
 %---------------------------------------%
+
+figure(1)
+plot(x,psdxn,'-o',x,psdxs,'-s',x,psdxo,'-x',x,psdxe,'-p') 
+legend('nord','sud','ouest','est')
+xlabel('Période (jour)')
+ylabel('Amplitude de la fréquence')
+tit=sprintf('Puissance de densité spectrale de La Réunion');
+title(tit);
+set(gca,'FontSize', 16)
+s=sprintf('PSD_RUN.png');
+saveas(gcf,s);
+
+figure(2)
+plot(x,psdxn,'-o',x,psdxs,'-s',x,psdxo,'-x',x,psdxe,'-p') 
+xlim([0 150])
+legend('nord','sud','ouest','est')
+xlabel('Période (jour)')
+ylabel('Amplitude de la fréquence')
+tit=sprintf('Puissance de densité spectrale de La Réunion');
+title(tit);
+set(gca,'FontSize', 16)
+s=sprintf('PSD_RUN_150j.png');
+saveas(gcf,s);
+
+figure(3)
+plot(x,psdxn,'-o',x,psdxs,'-s',x,psdxo,'-x',x,psdxe,'-p') 
+xlim([0 15])
+legend('nord','sud','ouest','est')
+set(legend,'location','best')
+xlabel('Période (jour)')
+ylabel('Amplitude de la fréquence')
+tit=sprintf('Puissance de densité spectrale de La Réunion');
+title(tit);
+set(gca,'FontSize', 16)
+s=sprintf('PSD_RUN_15j.png');
+saveas(gcf,s);
+
+
