@@ -59,24 +59,24 @@ for m=1:12     %boucle mois
     mPw=reshape(Pw,length(lat),length(long));
     %--------------------------------------------------------%
     
-    %------Carte-moyenne-mensuelle--------------------------------%
-    figure(m)
-    mymap=pcolor(long,lat,mPw);      %creer une map 
-    mymap.EdgeAlpha=0;              %taille du maillage
-    colormap(jet)                   %legend
-    colorbar;             
-    caxis([0;60])    
-    xlabel('Longitude')
-    ylabel('Latitude')
-    tit=sprintf('Puissance moyenne mensuelle pour le mois %.2d (kW/m), Maurice',m);
-    title(tit);
-        s=sprintf('PMM_MAU_%.2d.png',m);
-        saveas(gcf,s);
-    %--------------------------------------------------------%
+%     %------Carte-moyenne-mensuelle--------------------------------%
+%     figure(m)
+%     mymap=pcolor(long,lat,mPw);      %creer une map 
+%     mymap.EdgeAlpha=0;              %taille du maillage
+%     colormap(jet)                   %legend
+%     colorbar;             
+%     caxis([0;60])    
+%     xlabel('Longitude')
+%     ylabel('Latitude')
+%     tit=sprintf('Puissance moyenne mensuelle pour le mois %.2d (kW/m), Maurice',m);
+%     title(tit);
+%         s=sprintf('PMM_MAU_%.2d.png',m);
+%         saveas(gcf,s);
+%     %--------------------------------------------------------%
 end
 
 %------Matrice de la moyenne annuelle--------------------------------%
-yPw=sum(Pwm,2);     %somme des puissances des moyenne mensuelles  
+yPw=mean(Pwm,2);     %somme des puissances des moyenne mensuelles  
 ymPw=reshape(yPw,length(lat),length(long));     %redimensionne
 %--------------------------------------------------------%
 
@@ -85,14 +85,16 @@ figure(y)
 mymap=pcolor(long,lat,ymPw);      %creer une map 
 mymap.EdgeAlpha=0;              %taille du maillage
 colormap(jet)                   %legend
-colorbar;             
+colorbar;  
+geoshow('MUS_adm0.shp','FaceColor',[.8 .8 .8])
 %caxis([40;400])    
 xlabel('Longitude')
 ylabel('Latitude')
-tit=sprintf('Puissance moyenne annuelle (Kw/m), Maurice');
+tit=sprintf('Puissance moyenne annuelle (Kw/m),\n en zone C');
 title(tit);
-    s=sprintf('PMA_MAU.png');
-    saveas(gcf,s);
+set(gca,'FontSize', 15)
+s=sprintf('PMA_MAU.png');
+saveas(gcf,s);
 %--------------------------------------------------------%
 
 

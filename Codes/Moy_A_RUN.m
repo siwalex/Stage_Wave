@@ -58,39 +58,55 @@ for m=1:12     %boucle mois
     Pwm=[Pwm Pw];               %matrice des puissances moyenne mensuelles
     mPw=reshape(Pw,length(lat),length(long));
     %--------------------------------------------------------%
-    
-    %------Carte-moyenne-mensuelle--------------------------------%
-    figure(m)
-    mymap=pcolor(long,lat,mPw);      %creer une map 
-    mymap.EdgeAlpha=0;              %taille du maillage
-    colormap(jet)                   %legend
-    colorbar;             
-    caxis([0;50])    
-    xlabel('Longitude')
-    ylabel('Latitude')
-    tit=sprintf('Puissance moyenne mensuelle pour le %.2d (kW/m), a Réunion',m);
-    title(tit);
-        s=sprintf('PMM_RUN_%2d.png',m);
-        saveas(gcf,s);
-    %--------------------------------------------------------%
+%     
+%     %------Carte-moyenne-mensuelle--------------------------------%
+%     figure(m)
+%     mymap=pcolor(long,lat,mPw);      %creer une map 
+%     mymap.EdgeAlpha=0;              %taille du maillage
+%     colormap(jet)                   %legend
+%     colorbar;             
+%     caxis([0;50])    
+%     xlabel('Longitude')
+%     ylabel('Latitude')
+%     tit=sprintf('Puissance moyenne mensuelle pour le %.2d (kW/m), a Réunion',m);
+%     title(tit);
+%         s=sprintf('PMM_RUN_%2d.png',m);
+%         saveas(gcf,s);
+%     %--------------------------------------------------------%
 end
-%%
+
 %------Matrice de la moyenne annuelle--------------------------------%
-yPw=sum(Pwm,2);     %somme des puissances des moyenne mensuelles  
+yPw=mean(Pwm,2);     %somme des puissances des moyenne mensuelles  
 ymPw=reshape(yPw,length(lat),length(long));     %redimensionne
 %--------------------------------------------------------%
+%%
+filename2= 'REU_adm0.shp';
+S = shaperead(filename2);
+xlong = extractfield(S,'X');
+ylat = extractfield(S,'Y');
+ylat=ylat+0.1;
+xlong=xlong+0.05;
+Data.Geometry = 'Polygon' ;
+Data.X = xlong  ;  % latitude
+Data.Y = ylat ;  % longitude
+
+shapewrite(Data, 'run_adm0.shp')
+p = shaperead('run_adm0.shp')
 
 %------Carte-moyenne-Annuelle--------------------------------%
 figure(y)
 mymap=pcolor(long,lat,ymPw);      %creer une map 
 mymap.EdgeAlpha=0;              %taille du maillage
 colormap(jet)                   %legend
-colorbar;             
-%caxis([40;400])    
+colorbar;   
+%caxis([40;400]) 
+
+geoshow(p,'FaceColor',[.8 .8 .8]);
 xlabel('Longitude')
 ylabel('Latitude')
-tit=sprintf('Puissance moyenne annuelle (Kw/m), La Reunion');
+tit=sprintf('Puissance moyenne annuelle (Kw/m),\n en zone B');
 title(tit);
+set(gca,'FontSize', 15)
     s=sprintf('PMA_RUN.png');
     saveas(gcf,s);
 %--------------------------------------------------------%

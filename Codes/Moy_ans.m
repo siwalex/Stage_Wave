@@ -55,20 +55,20 @@ for m=1:12     %boucle mois
     mPw=reshape(Pw,length(lat),length(long));
     %--------------------------------------------------------%
     
-    %------Carte-moyenne-mensuelle--------------------------------%
-    figure(m)
-    mymap=pcolor(long,lat,mPw);      %creer une map 
-    mymap.EdgeAlpha=0;              %taille du maillage
-    colormap(jet)                   %legend
-    colorbar;             
-    caxis([0;60])    
-    xlabel('Longitude')
-    ylabel('Latitude')
-    tit=sprintf('Puissance moyenne mensuelle pour le mois %.2d (kW/m)',m);
-    title(tit);
-    s=sprintf('PMM_%.2d.png',m);
-    saveas(gcf,s);
-    %--------------------------------------------------------%
+%     %------Carte-moyenne-mensuelle--------------------------------%
+%     figure(m)
+%     mymap=pcolor(long,lat,mPw);      %creer une map 
+%     mymap.EdgeAlpha=0;              %taille du maillage
+%     colormap(jet)                   %legend
+%     colorbar;             
+%     caxis([0;60])    
+%     xlabel('Longitude')
+%     ylabel('Latitude')
+%     tit=sprintf('Puissance moyenne mensuelle pour le mois %.2d (kW/m)',m);
+%     title(tit);
+%     s=sprintf('PMM_%.2d.png',m);
+%     saveas(gcf,s);
+%     %--------------------------------------------------------%
     
     
 
@@ -91,25 +91,33 @@ for m=1:12     %boucle mois
 %     saveas(gcf,s);
 %     %--------------------------------------------------------%
 end
-
+%%
 %------Matrice de la moyenne annuelle--------------------------------%
-yPw=sum(Pwm,2);     %somme des puissances des moyenne mensuelles  
+yPw=mean(Pwm,2);     %somme des puissances des moyenne mensuelles  
 ymPw=reshape(yPw,length(lat),length(long));     %redimensionne
 %--------------------------------------------------------%
 
+% filename2= 'MUS_adm0.shp';
+% S = shaperead(filename2);
+%xlong = extractfield(S,'X');
+%ylat = extractfield(S,'Y');
+%%
 %------Carte-moyenne-Annuelle--------------------------------%
 figure(y)
 mymap=pcolor(long,lat,ymPw);      %creer une map 
 mymap.EdgeAlpha=0;              %taille du maillage
 colormap(jet)                   %legend
-colorbar;             
+colorbar;  
+ geoshow('MUS_adm0.shp','FaceColor',[.8 .8 .8])
+ geoshow('run_adm0.shp','FaceColor',[.8 .8 .8])
 %caxis([40;400])    
 xlabel('Longitude')
 ylabel('Latitude')
 tit=sprintf('Puissance moyenne annuelle en kW/m');
 title(tit);
-    s=sprintf('PMA.png');
-    saveas(gcf,s);
+set(gca,'FontSize', 15)
+s=sprintf('PMA.png');
+saveas(gcf,s);
 %--------------------------------------------------------%
 
 
