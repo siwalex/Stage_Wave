@@ -84,11 +84,36 @@ caxis([0;45])
  geoshow('run_adm0.shp','FaceColor',[.8 .8 .8])
 xlabel('Longitude')
 ylabel('Latitude')
-tit=sprintf('Puissance moyenne de \ndecembre à février (kW/m)');
+tit=sprintf('Puissance moyenne de \ndécembre à février (kW/m)');
 title(tit);
 set(gca,'FontSize', 15)
-   s=sprintf('PMSais_FDJ.png');
+   s=sprintf('PMSais_DJF.png');
    saveas(gcf,s);
+   %%
+         %------Carte-variance-mensuelle--------------------------------%
+vsPw101=var(sPw101,0,2)
+varP101=reshape(vsPw101,length(lat),length(long));
+figure
+mymap=pcolor(long,lat,varP101);      %creer une map 
+mymap.EdgeAlpha=0;              %taille du maillage
+colormap(jet)                   %legend
+c=colorbar;  
+ geoshow('MUS_adm0.shp','FaceColor',[.8 .8 .8])
+ geoshow('run_adm0.shp','FaceColor',[.8 .8 .8])
+caxis([0;35]) 
+pos = get(c,'Position');
+c.Label.Position = [pos(1) pos(2)+40]; % to change its position
+c.Label.Rotation = 0;
+c.Label.String='(%)';
+xlabel('Longitude')
+ylabel('Latitude')
+tit=sprintf('Variance de la puissance \n de décembre à février');
+title(tit);
+set(gca,'FontSize', 15)
+s=sprintf('var_DJF.png');
+saveas(gcf,s);
+%--------------------------------------------------------%
+  %% 
 %--------------------------------------------------------%
 
 sPw22=[];
@@ -117,6 +142,31 @@ title(tit);
 set(gca,'FontSize', 15)
    s=sprintf('PMSais_MAM.png');
    saveas(gcf,s);
+   
+      %------Carte-variance-mensuelle--------------------------------%
+vsPw22=var(sPw22,0,2)
+varP22=reshape(vsPw22,length(lat),length(long));
+figure
+mymap=pcolor(long,lat,varP22);      %creer une map 
+mymap.EdgeAlpha=0;              %taille du maillage
+colormap(jet)                   %legend
+c=colorbar;  
+ geoshow('MUS_adm0.shp','FaceColor',[.8 .8 .8])
+ geoshow('run_adm0.shp','FaceColor',[.8 .8 .8])
+caxis([0;35]) 
+pos = get(c,'Position');
+c.Label.Position = [pos(1) pos(2)+40]; % to change its position
+c.Label.Rotation = 0;
+c.Label.String='(%)';
+xlabel('Longitude')
+ylabel('Latitude')
+tit=sprintf('Variance de la puissance \n de mars à mai');
+title(tit);
+set(gca,'FontSize', 15)
+s=sprintf('var_MAM.png');
+saveas(gcf,s);
+%--------------------------------------------------------%
+   
 %--------------------------------------------------------%
 
 sPw33=[];
@@ -140,12 +190,40 @@ caxis([0;45])
  geoshow('run_adm0.shp','FaceColor',[.8 .8 .8])
 xlabel('Longitude')
 ylabel('Latitude')
-tit=sprintf('Puissance moyenne de \n juin à aout (kW/m)');
+tit=sprintf('Puissance moyenne de \n juin à août (kW/m)');
 title(tit);
 set(gca,'FontSize', 15)
    s=sprintf('PMSais_JJA.png');
    saveas(gcf,s);
+   
+  
+   %------Carte-variance-mensuelle--------------------------------%
+vsPw33=var(sPw33,0,2)
+varP33=reshape(vsPw33,length(lat),length(long));
+figure
+mymap=pcolor(long,lat,varP33);      %creer une map 
+mymap.EdgeAlpha=0;              %taille du maillage
+colormap(jet)                   %legend
+c=colorbar;  
+ geoshow('MUS_adm0.shp','FaceColor',[.8 .8 .8])
+ geoshow('run_adm0.shp','FaceColor',[.8 .8 .8])
+caxis([0;35]) 
+pos = get(c,'Position');
+c.Label.Position = [pos(1) pos(2)+40]; % to change its position
+c.Label.Rotation = 0;
+c.Label.String='(%)';
+xlabel('Longitude')
+ylabel('Latitude')
+tit=sprintf('Variance de la puissance \n de juin à août');
+title(tit);
+set(gca,'FontSize', 15)
+s=sprintf('var_JJA.png');
+saveas(gcf,s);
 %--------------------------------------------------------%
+   
+%--------------------------------------------------------%
+
+
 
 sPw44=[];
 for i=9:11
@@ -172,6 +250,31 @@ title(tit);
 set(gca,'FontSize', 15)
    s=sprintf('PMSais_SON.png');
    saveas(gcf,s);
+   
+
+%------Carte-variance-mensuelle--------------------------------%
+vsPw44=var(sPw44,0,2)
+varH44=reshape(vsPw44,length(lat),length(long));
+figure
+mymap=pcolor(long,lat,varH44);      %creer une map 
+mymap.EdgeAlpha=0;              %taille du maillage
+colormap(jet)                   %legend
+c=colorbar;  
+ geoshow('MUS_adm0.shp','FaceColor',[.8 .8 .8])
+ geoshow('run_adm0.shp','FaceColor',[.8 .8 .8])
+caxis([0;35]) 
+pos = get(c,'Position');
+c.Label.Position = [pos(1) pos(2)+40]; % to change its position
+c.Label.Rotation = 0;
+c.Label.String='(%)';
+xlabel('Longitude')
+ylabel('Latitude')
+tit=sprintf('Variance de la puissance \n de septembre à novembre');
+title(tit);
+set(gca,'FontSize', 15)
+s=sprintf('var_SON.png');
+saveas(gcf,s);
+%--------------------------------------------------------%
 %--------------------------------------------------------%
 
 
